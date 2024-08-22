@@ -10,7 +10,7 @@ namespace Entity
     {
         public int DoktorId { get; set; }
         public string DoktorFUllname { get; set; }
-        public List<Hasta> Hastalar { get; set; }
+        public List<Hasta> hastalars { get; set; }
         public AcilServisAlan Alan { get; set; }
         public int AlanId { get; set; }
     }
