@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{29D7DC1D-B258-4447-9B1A-6EA41E6E786A}</ProjectGuid>
+    <ProjectGuid>{70E7B4AC-E107-4087-848A-E3B2B19982C7}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Entity</RootNamespace>
-    <AssemblyName>Entity</AssemblyName>
+    <RootNamespace>DataAccess</RootNamespace>
+    <AssemblyName>DataAccess</AssemblyName>
     <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,13 +43,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AcilServisAlan.cs" />
-    <Compile Include="Doktor.cs" />
-    <Compile Include="Hasta.cs" />
+    <Compile Include="Abstract\IHastaRepository.cs" />
+    <Compile Include="Abstract\IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AplicationWebUi\AplicationWebUi.csproj">
+      <Project>{04e681eb-926f-4ea9-99fb-89bb258766c4}</Project>
+      <Name>AplicationWebUi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entity\Entity.csproj">
+      <Project>{29d7dc1d-b258-4447-9b1a-6ea41e6e786a}</Project>
+      <Name>Entity</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Concrete\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

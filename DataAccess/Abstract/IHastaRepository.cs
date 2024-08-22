@@ -3,13 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-namespace Entity
+using Entity;
+namespace DataAccess.Abstract
 {
-    internal class Program
+    public interface IHastaRepository:IHastaRepository<Hasta>
     {
-        static void Main(string[] args)
-        {
-        }
     }
 }
