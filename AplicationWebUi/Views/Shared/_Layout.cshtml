@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/AplicationWebUi.styles.css" asp-append-version="true" />
 </head>
-<body>
+<body style="background-color: #F8EDE3;">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+       @*  <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" style="background-color: #C5705D;">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">AplicationWebUi</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -28,15 +28,44 @@
                     </ul>
                 </div>
             </div>
+        </nav> *@
+        <nav class="navbar  navbar-expand-sm navbar-toggleable-sm navbar-light  shadow-lg rounded  m-3" style="background-color: #C5705D;">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index" style="color:#D0B8A8;">X Hastane</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex  ">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                   
+                       
+                  
+                </div>
+
+              
+            </div>
         </nav>
+
     </header>
     <div class="container">
         <main role="main" class="pb-3">
-            @RenderBody()
+
+            <div class="m-lg-5 m-md-2 text-lg-center text-md-center">
+                @RenderBody()
+            </div>
+           
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted  rounded">
         <div class="container">
             &copy; 2024 - AplicationWebUi - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
