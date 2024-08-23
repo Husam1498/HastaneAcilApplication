@@ -1,0 +1,48 @@
+﻿@{
+    Layout = "~/Views/Shared/_AnaLayout.cshtml";
+}
+@model List<AcilServisAlan>
+
+
+<h1 style="text-align:center">Alanlar</h1>
+<hr />
+<a class="btn btn-outline-primary" asp-controller="AcilServiAlan" asp-action="Create" class="btn btn-primary">New Alan</a>
+
+<div id="body2">
+    <div class="giris2">
+        <div class="form-box">
+            <div class="row">
+                <div class="container">
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Alan Id</th>
+                                <th scope="col">Alan Name</th>
+                                <th scope="col">İşlemmler</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.AlanId</td>
+                                    <td>@item.AlanName</td>
+                                    <td>
+                                        <a asp-controller="Alan" asp-action="UpdateAlan" asp-route-id="@item.AlanId" class="btn btn-dark btn-sm">update</a>
+                                        <a asp-controller="Alan" asp-action="DeleteAlan" asp-route-id="@item.AlanId" class="btn btn-danger btn-sm">Sil</a>
+                                    </td>
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>

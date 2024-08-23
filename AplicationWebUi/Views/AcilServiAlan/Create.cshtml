@@ -1,0 +1,23 @@
+﻿@{
+    Layout = "~/Views/Shared/_AnaLayout.cshtml";
+}
+@model AcilServisAlan
+
+<div id="body2" >
+    <div class="giris2">
+        <div class="form-box">
+            <h2>Welcome</h2>
+            <p>Hasta Kayıt</p>
+
+            <form asp-controller="AcilServiAlan" asp-action="Create" methd="post">
+                <div class="input-box">
+                    @* <span class="icon"> <ion-icon name="mail-outline"></ion-icon></span> *@
+                    <input type="text" asp-for="AlanName" />
+                    <label asp-for="AlanName"></label>
+                </div>            
+                <button type="submit" class="button">Kaydet</button>               
+            </form>
+        </div>
+    </div>
+
+</div>

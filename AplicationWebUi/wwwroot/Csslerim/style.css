@@ -178,3 +178,35 @@
         margin: 15px 0 5px;
     }
 }
+
+/*Ana sayfaada lazım olabileckler*/
+#body2 {
+    margin-left: 150px;
+    margin-right: 150px;
+}
+
+.giris2 {
+    background: transparent;
+    border: 2px solid var(--lightprimary);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 50px rgba(5,12,156,.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-box {
+    width: 100%;
+    padding: 30px;
+}
+
+.form-box p {
+    font-size: 1.5rem;
+    text-align: center;
+    color: var(--darkprimary);
+}
+.input-box input:focus ~ label,
+.input-box input:valid ~ label {
+    top: -5px;
+}
