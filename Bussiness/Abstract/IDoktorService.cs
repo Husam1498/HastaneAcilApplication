@@ -19,5 +19,6 @@ namespace Bussiness.Abstract
         void Update(Doktor entity);
 
         void Delete(Doktor entity);
+        string GetDoktorServisName(int alanId);
     }
 }

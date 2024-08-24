@@ -46,9 +46,11 @@ builder.Services.ConfigureApplicationCookie(opt =>
 
 builder.Services.AddScoped<IAcilServisAlanRepository, EfCoreAcilAlanRepository>();
 builder.Services.AddScoped<IDoktorRepository, EfCoreDoktorRepository>();
+builder.Services.AddScoped<IHastaRepository, EfCoreHastaRepository>();
 
 builder.Services.AddScoped<IAcilServisAlanService, AcilServisAlanManager>();
 builder.Services.AddScoped<IDoktorService, DoktorManager>();
+builder.Services.AddScoped<IHastaService, HastaManager>();
 
 
 var app = builder.Build();

@@ -44,6 +44,11 @@ namespace Bussiness.Concrete
             return _repository.GetById(id); 
         }
 
+        public string GetDoktorServisName(int alanId)
+        {
+            return _repository.GetDoktorServisName(alanId);
+        }
+
         public void Update(Doktor entity)
         {
             if (Validaton(entity))

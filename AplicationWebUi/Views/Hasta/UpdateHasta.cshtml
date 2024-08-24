@@ -1,0 +1,45 @@
+﻿@{
+    Layout = "~/Views/Shared/_AnaLayout.cshtml";
+}
+@model Hasta
+
+<div id="body2">
+    <div class="giris2">
+        <div class="form-box">
+            <h2>Welcome</h2>
+            <p>Hasta Kayıt</p>
+
+            <form asp-controller="Hasta" asp-action="UpdateHasta" methd="post">
+                <input type="hidden" asp-for="@Model.HastaId"/>
+                <div class="input-box">
+                    @* <span class="icon"> <ion-icon name="mail-outline"></ion-icon></span> *@
+                    <input type="text" asp-for="HastaFullname" value="@Model.HastaFullname" />
+                    <label asp-for="HastaFullname"></label>
+                </div>
+                <div class="input-box">
+                    @* <span class="icon"> <ion-icon name="mail-outline"></ion-icon></span> *@
+                    <input type="text" asp-for="DateBirth" value="@Model.DateBirth" />
+                    <label asp-for="DateBirth"></label>
+                </div>
+                <div class="input-box">
+                    @* <span class="icon"> <ion-icon name="mail-outline"></ion-icon></span> *@
+                    <input type="text" asp-for="HastlıkBilgisi" value="@Model.HastlıkBilgisi" />
+                    <label asp-for="HastlıkBilgisi"></label>
+                </div>
+                <div class="input-box">
+                    @* <label class="label" asp-for="AlanId"></label> *@
+                    <select style="
+                            width: 100%;
+                            height:70%;
+                            margin-top: 16px;
+                            color: var(--darkprimary);"
+                            asp-items="@ViewBag.doktorlar" asp-for="DoktorId" value="@Model.DoktorId">
+                        <option disabled selected>Doktor Seçiniz</option>
+
+                    </select>
+                </div>
+                <button type="submit" class="button">Kaydet</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -9,5 +9,6 @@ namespace DataAccess.Abstract
 {
     public interface IDoktorRepository:IRepository<Doktor>
     {
+        public string GetDoktorServisName(int alanId);
     }
 }
