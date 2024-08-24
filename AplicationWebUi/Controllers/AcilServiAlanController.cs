@@ -27,5 +27,25 @@ namespace AplicationWebUi.Controllers
         {
             return View(_service.GetAll());
         }
+        
+        public IActionResult UpdateAlan(int id)
+        {
+            var entity=_service.GetById(id);
+            return View(entity);
+        }
+        [HttpPost]
+        public IActionResult UpdateAlan(AcilServisAlan entity)
+        {
+            _service.Update(entity);
+            return RedirectToAction(nameof(List));
+        }
+        public IActionResult DeleteAlan(int id)
+        {
+            var alan= _service.GetById(id);
+            _service.Delete(alan);
+            return RedirectToAction(nameof(List));
+        }
+
+
     }
 }

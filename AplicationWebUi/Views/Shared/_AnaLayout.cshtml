@@ -4,8 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - AplicationWebUi</title>
-    <link rel="stylesheet" href="~/Csslerim/style.css">
     <link rel="stylesheet" href="~/Csslerim/AnaSayfa.css" />
+    <link rel="stylesheet" href="~/Csslerim/style.css">
+   
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 </head>
 <body>
@@ -14,11 +15,8 @@
             <div class="arkplan">
                 <nav class="main-nav">
                     <a href="index.html" class="logo">Hastahane</a>
-                    <ul class="main-nav__items">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a asp-controller="AcilServiAlan" asp-action="List">Hastalar</a></li>
-                        <li><a href="project.html">Project</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                    <ul class="main-nav__items">                      
+                        <li><a asp-controller="AcilServiAlan" asp-action="List">Hastalar</a></li>                       
                     </ul>
                 </nav>
             </div>
