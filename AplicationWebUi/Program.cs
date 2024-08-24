@@ -45,8 +45,10 @@ builder.Services.ConfigureApplicationCookie(opt =>
 });
 
 builder.Services.AddScoped<IAcilServisAlanRepository, EfCoreAcilAlanRepository>();
+builder.Services.AddScoped<IDoktorRepository, EfCoreDoktorRepository>();
 
 builder.Services.AddScoped<IAcilServisAlanService, AcilServisAlanManager>();
+builder.Services.AddScoped<IDoktorService, DoktorManager>();
 
 
 var app = builder.Build();
@@ -71,6 +73,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Kullanici}/{action=Deneme}/{id?}");
 
 app.Run();

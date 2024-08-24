@@ -79,7 +79,20 @@
     padding: 0 35px 0 5px;
     color: var(--darkprimary);
 }
-
+.input-box .input {
+    width: 100%;
+    height:70%;  
+    color: var(--darkprimary);
+}
+.input-box .label{
+     position: absolute;
+    color:var(--darkprimary);
+    top: 0;
+    left: 5px;
+    transform: translateY(-50%);
+    font-weight: 500;
+    pointer-events: none;
+}
 .input-box .icon {
     position: absolute;
     right: 8px;
