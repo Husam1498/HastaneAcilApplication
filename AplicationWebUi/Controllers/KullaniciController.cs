@@ -8,9 +8,6 @@ namespace AplicationWebUi.Controllers
         {
             return PartialView();
         }
-        public IActionResult Deneme()
-        {
-            return PartialView();
-        }
+     
     }
 }

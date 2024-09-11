@@ -14,19 +14,7 @@ builder.Services.AddDbContext<MsSQLContext>(options =>
     options.UseSqlServer("Server=DESKTOP-S32BE3K;Database=HastaneAcilServisDb; Trusted_Connection=True; TrustServerCertificate=True;")//veritabaný baððlantýsý yaptýk identity için
 
 );
-builder.Services.AddIdentity<User,IdentityRole>().AddEntityFrameworkStores<MsSQLContext>().AddDefaultTokenProviders();//kullanýcý login olduðunda cookide benzersiz bir token oluþturur
 
-builder.Services.Configure<IdentityOptions>(opt =>
-{
-    opt.Password.RequireDigit = true;
-
-    opt.Lockout.MaxFailedAccessAttempts = 5;
-    opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromSeconds(5);
-    opt.Lockout.AllowedForNewUsers = true;
-
-    opt.User.RequireUniqueEmail = true;
-    //opt.SignIn.RequireConfirmedEmail = true;//Kullanýcý kayýt olurken emailini doðrulamasý gerekr
-});
 builder.Services.ConfigureApplicationCookie(opt =>
 {
     opt.LoginPath="/Kullanici/Login";
@@ -36,11 +24,7 @@ builder.Services.ConfigureApplicationCookie(opt =>
     opt.SlidingExpiration = true;
     opt.ExpireTimeSpan = TimeSpan.FromDays(5);
 
-    opt.Cookie = new CookieBuilder
-    {
-        HttpOnly = true,//javascript uygulamlarý cokiye ulaþmaamýs için
-        Name=".HastaneCookies"
-    };
+
 
 });
 
