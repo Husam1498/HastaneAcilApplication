@@ -14,12 +14,26 @@
             <div class="arkplan">
                 <nav class="main-nav">
                     <a href="index.html" class="logo">Hastahane</a>
-                    <ul class="main-nav__items">           
-                        <li><a asp-controller="Kullanici" asp-action="Deneme">Home</a></li>
-                        <li><a asp-controller="AcilServiAlan" asp-action="List">Alanlar</a></li> 
-                        <li><a asp-controller="Doktor" asp-action="ListDoktor">Doktor</a></li>
-                        <li><a asp-controller="Hasta" asp-action="ListHasta">Hastalar</a></li>
-                        <li><a asp-controller="Kullanici" asp-action="Login">Login</a></li>
+                    <ul class="main-nav__items">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li><a asp-controller="Kullanici" asp-action="Deneme">Home</a></li>
+                            <li><a asp-controller="AcilServiAlan" asp-action="List">Alanlar</a></li>
+                            <li><a asp-controller="Doktor" asp-action="ListDoktor">Doktor</a></li>
+                            <li><a asp-controller="Hasta" asp-action="ListHasta">Hastalar</a></li>
+                            <li><a asp-controller="Hasta" asp-action="ListHasta">@User.FindFirst("Username").Value</a></li>
+                            <li><a asp-controller="Kullanici" asp-action="Logout">Logout</a></li>
+                        }
+                        else
+                        {
+                            <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                            <li><a asp-controller="Kullanici" asp-action="Login">Login</a></li>
+                            <li><a asp-controller="Kullanici" asp-action="Register">Register</a></li>
+                        }
+
+                            
+                            
+                           
                     </ul>
                 </nav>
             </div>

@@ -13,6 +13,7 @@ namespace DataAccess.Concrete.EfCore
         public DbSet<Doktor> DoktorLar { get; set; }
         public DbSet<AcilServisAlan> Alanlar { get; set; }
         public DbSet<Hasta> Hastalar { get; set; }
+        public DbSet<User> User { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
