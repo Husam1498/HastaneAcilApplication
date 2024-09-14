@@ -9,16 +9,22 @@
 <div id="body2">
     <div class="giris2">
         <div class="form-box">            
-            <h2>Hasta Update</h2>
+           
+            <form class="register" asp-controller="AcilServiAlan" asp-action="UpdateAlan">
+                <p class="title">Update Acil Servis Alan </p>
+                <div asp-validation-summary="All" class="message"></div>
+                <input type="hidden" value="@Model.AlanId" asp-for="AlanId" />
 
-            <form asp-controller="AcilServiAlan" asp-action="UpdateAlan" methd="post">
-                <div class="input-box">
-                    @* <span class="icon"> <ion-icon name="mail-outline"></ion-icon></span> *@
-                    <input type="text" asp-for="AlanName" value="@Model.AlanName" />
-                    <label asp-for="AlanName"></label>
-                </div>
-                <button type="submit" class="button">Kaydet</button>
+                <label>
+                    <input class="input" asp-for="AlanName" value="@Model.AlanName">
+                    <span>AlanName</span>
+                </label>
+
+              
+                <button type="submit" class="submit">Kaydet</button>
+                <button class="submit" asp-action="List" asp-controller="AcilServiAlan">Geri dön</button>
             </form>
+       
         </div>
     </div>
 

@@ -308,7 +308,7 @@
     background-color: var(--secondaryColor);
     display: flex;
     flex-direction: column;
-    justify-content: end;
+    justify-content: center;
     padding: 12px;
     gap: 12px;
     border-radius: 8px;
@@ -352,6 +352,7 @@
 .KardButton {
     padding: 1em 0.5em;
     font-size: 12px;
+    text-align:center;
     text-transform: uppercase;
     letter-spacing: 2px;
     text-decoration: none;

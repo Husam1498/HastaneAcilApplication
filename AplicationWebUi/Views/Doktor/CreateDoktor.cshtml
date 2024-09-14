@@ -9,30 +9,27 @@
 <div id="body2">
     <div class="giris2">
         <div class="form-box">
-            <h2>Welcome</h2>
-            <p>Doktor Create</p>
+            
+            <form class="register" asp-controller="Doktor" asp-action="CreateDoktor">
+                <p class="title">Create Doktor </p>
+                <div asp-validation-summary="All" class="message"></div>
 
-            <form asp-controller="Doktor" asp-action="CreateDoktor" methd="post">
+                
+                <label>
+                    <input class="input" asp-for="DoktorFUllname">
+                    <span>Fullname</span>
+                </label>                  
                
-                <div class="input-box">
-                    @* <span class="icon"> <ion-icon name="mail-outline"></ion-icon></span> *@
-                    <input type="text" asp-for="DoktorFUllname" />
-                    <label asp-for="DoktorFUllname"></label>
-                </div>
-                <div class="input-box">                                 
-                    @* <label class="label" asp-for="AlanId"></label> *@
-                    <select style="
-                            width: 100%;
-                            height:70%;
-                            margin-top: 16px;
-                            color: var(--darkprimary);"
-                        asp-items="@ViewBag.Alanname" asp-for="AlanId">
-                        <option disabled selected value="AlanId">Alan Seçiniz</option>
-
+                <label>
+                    <select asp-items="@ViewBag.Alanname" asp-for="AlanId" class="selectBox">
+                        <option disabled selected value="AlanId">Alan Seçiniz</option>                        
                     </select>
-                </div>
-                <button type="submit" class="button">Kaydet</button>
+                </label>
+                <button type="submit" class="submit">Kaydet</button>
+                <button class="submit" asp-action="ListDoktor" asp-controller="Doktor">Geri dön</button>
+
             </form>
+
         </div>
     </div>
 </div>

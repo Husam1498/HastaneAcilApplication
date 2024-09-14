@@ -6,16 +6,19 @@
 <div id="body2" >
     <div class="giris2">
         <div class="form-box">
-            <h2>Welcome</h2>
-            <p>Hasta Kayıt</p>
+            <form class="register" asp-controller="AcilServiAlan" asp-action="Create">
+                <p class="title">Create Acil Servis Alan </p>
+                <div asp-validation-summary="All" class="message"></div>
 
-            <form asp-controller="AcilServiAlan" asp-action="Create" methd="post">
-                <div class="input-box">
-                    @* <span class="icon"> <ion-icon name="mail-outline"></ion-icon></span> *@
-                    <input type="text" asp-for="AlanName" />
-                    <label asp-for="AlanName"></label>
-                </div>            
-                <button type="submit" class="button">Kaydet</button>               
+
+                <label>
+                    <input class="input" asp-for="AlanName">
+                    <span>AlanName</span>
+                </label>
+
+              
+                <button type="submit" class="submit">Kaydet</button>
+                <button class="submit" asp-action="List" asp-controller="AcilServiAlan">Geri dön</button>
             </form>
         </div>
     </div>

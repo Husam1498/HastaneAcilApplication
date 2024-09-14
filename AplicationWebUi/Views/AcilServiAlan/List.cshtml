@@ -3,46 +3,57 @@
 }
 @model List<AcilServisAlan>
 
+<div class="container">
+    <div class="row">
+        <h1 class="text-center">Acil Servis Alanları</h1>
+        <hr />
+        <div class="col-4">
+            <div class="Kart">
+                <a class="KardButton" asp-controller="AcilServiAlan" asp-action="Create" class="btn btn-primary">New Alan</a>
+            </div>
+        </div>
+        <div class="col-8">
+            <h3 class="text-center">Şu An Hastanemizde bulunan Acil Alanlar</h3>
+            <hr />
+            <div id="body2">
+                <div class="giris2">
+                    <div class="form-box">
+                        <div class="row">
+                            <div class="container">
 
-<h1 style="text-align:center">Alanlar</h1>
-<hr />
-<a class="btn btn-outline-primary" asp-controller="AcilServiAlan" asp-action="Create" class="btn btn-primary">New Alan</a>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Alan Id</th>
+                                            <th scope="col">Alan Name</th>
+                                            <th scope="col">İşlemmler</th>
 
-<div id="body2">
-    <div class="giris2">
-        <div class="form-box">
-            <div class="row">
-                <div class="container">
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>@item.AlanId</td>
+                                                <td>@item.AlanName</td>
+                                                <td>
+                                                    <a asp-controller="AcilServiAlan" asp-action="UpdateAlan" asp-route-id="@item.AlanId" class="btn btn-dark btn-sm" style="background-color:#3572EF;">update</a>
+                                                    <a asp-controller="AcilServiAlan" asp-action="DeleteAlan" asp-route-id="@item.AlanId" class="btn btn-danger btn-sm">Sil</a>
+                                                </td>
 
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Alan Id</th>
-                                <th scope="col">Alan Name</th>
-                                <th scope="col">İşlemmler</th>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td>@item.AlanId</td>
-                                    <td>@item.AlanName</td>
-                                    <td>
-                                        <a asp-controller="AcilServiAlan" asp-action="UpdateAlan" asp-route-id="@item.AlanId" class="btn btn-dark btn-sm" style="background-color:#3572EF;">update</a>
-                                        <a asp-controller="AcilServiAlan" asp-action="DeleteAlan" asp-route-id="@item.AlanId" class="btn btn-danger btn-sm">Sil</a>
-                                    </td>
+                        </div>
 
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
+                    </div>
                 </div>
 
             </div>
 
         </div>
     </div>
-
 </div>
