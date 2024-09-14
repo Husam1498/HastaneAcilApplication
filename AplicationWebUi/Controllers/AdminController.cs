@@ -1,14 +1,24 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Bussiness.Abstract;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AplicationWebUi.Controllers
 {
-   
+    //[Authorize(Roles ="admin,manager")]//login olmuşolanlar girebilir
+    [Authorize(Roles ="admin")]
     public class AdminController : Controller
     {
-        public IActionResult Index()
+     
+        private IUserService _userService;
+
+        public AdminController(IUserService userService)
         {
-            return View();
+            _userService = userService;
+        }
+
+        public IActionResult AnaSayfa()
+        {
+            return View(_userService.GetAll());
         }
     }
 }

@@ -11,31 +11,20 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-//builder.Services.AddDbContext<MsSQLContext>(options =>
-//    options.UseSqlServer("Server=DESKTOP-S32BE3K;Database=HastaneAcilServisDb; Trusted_Connection=True; TrustServerCertificate=True;")//veritabaný baððlantýsý yaptýk identity için
 
-//);
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(opts =>
     {
         opts.Cookie.Name = "HastaneApplicationCookies.auth";
-        opts.SlidingExpiration = true;
-        opts.ExpireTimeSpan = TimeSpan.FromDays(5);
+        
         opts.LoginPath = "/Kullanici/Login";
         opts.LogoutPath = "/Kullanici/Logout";
         opts.AccessDeniedPath = "/Kullanici/AccessDenied";
+      
+        opts.ExpireTimeSpan = TimeSpan.FromDays(2);
+        opts.SlidingExpiration = true;
 
     });
-
-//builder.Services.ConfigureApplicationCookie(opt =>
-//{
-//    opt.LoginPath="/Kullanici/Login";
-//    opt.LogoutPath = "/Kullanici/Logout";
-//    opt.AccessDeniedPath = "/Kullanici/AccessDenied";
-
-//    opt.SlidingExpiration = true;
-//    opt.ExpireTimeSpan = TimeSpan.FromDays(5);
-//});
 
 builder.Services.AddScoped<IAcilServisAlanRepository, EfCoreAcilAlanRepository>();
 builder.Services.AddScoped<IDoktorRepository, EfCoreDoktorRepository>();

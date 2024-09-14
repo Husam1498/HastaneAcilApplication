@@ -18,6 +18,8 @@ namespace Entity
         
         public string Password { get; set; }
         public string Email { get; set; }
-        
+        [StringLength(10)]
+        public string Role { get; set; }
+
     }
 }

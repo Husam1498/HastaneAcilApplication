@@ -2,25 +2,18 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    Layout = "~/Views/Shared/_BaslagicLayout.cshtml";
 }
-
-<style>
-
-
-</style>
+@model UpdateUserMode
 
 
-@model RegisterModel
+<div id="body2">
 
-<div id="body">
-   
     <div class="giris2">
         <div class="form-box ">
-            <form class="register" asp-controller="Kullanici" asp-action="Register">
-                <p class="title">Register </p>
+            <form class="register" asp-controller="Kullanici" asp-action="KullaniciUpdate">
+                <p class="title">Update </p>
                 <div asp-validation-summary="All" class="message"></div>
-               
+                <input type="hidden" asp-for="UserId" />
                 <div class="flex">
                     <label>
                         <input class="input" asp-for="Fullname">
@@ -38,14 +31,7 @@
                     <span>Email</span>
                 </label>
 
-                <label>
-                    <input class="input" asp-for="Password">
-                    <span>Password</span>
-                </label>
-                <label>
-                    <input class="input" asp-for="RePasword">
-                    <span>Confirm password</span>
-                </label>
+              
                 <label>
                     <select asp-for="Role" class="selectBox">
                         <option disabled selected value="Role">Role Seçiniz</option>
@@ -54,19 +40,10 @@
 
                     </select>
                 </label>
-                <button class="submit" asp-action="Register" asp-controller="Kullanici">Kaydet</button>
+                <button class="submit" asp-action="KullaniciUpdate"  asp-controller="Kullanici">Kaydet</button>
                 <button class="submit" asp-action="AnaSayfa" asp-controller="Admin">Geri dön</button>
-                
+
             </form>
         </div>
     </div>
 </div>
-
-@* /* From Uiverse.io by ammarsaa */ *@
-
-
-
-
-
-<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

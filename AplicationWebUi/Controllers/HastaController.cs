@@ -1,11 +1,13 @@
 ﻿using Bussiness.Abstract;
 using Entity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections;
 
 namespace AplicationWebUi.Controllers
 {
+    [Authorize(Roles = "admin,sektreter")]
     public class HastaController : Controller
     {
         private IHastaService hastaService;

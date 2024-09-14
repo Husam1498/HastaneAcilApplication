@@ -1,11 +1,13 @@
 ﻿using Bussiness.Abstract;
 using Entity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections;
 
 namespace AplicationWebUi.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class DoktorController : Controller
     {
         private IDoktorService _service;
@@ -29,7 +31,7 @@ namespace AplicationWebUi.Controllers
             _service.Create(entity);
             return RedirectToAction(nameof(ListDoktor));
         }
-
+        [AllowAnonymous]
         public IActionResult ListDoktor()
         {
             Hashtable _alanlar = new Hashtable();

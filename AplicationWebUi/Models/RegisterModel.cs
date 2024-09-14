@@ -4,6 +4,7 @@ namespace AplicationWebUi.Models
 {
     public class RegisterModel
     {
+        public int UserId { get; set; }
         [Required]
         [StringLength(25,ErrorMessage ="En fazla 25 karakter olmalı")]
         public string Fullname { get; set; }
@@ -18,9 +19,12 @@ namespace AplicationWebUi.Models
         public string Password { get; set; }
         [Required]
         [Compare(nameof(Password),ErrorMessage ="Şifreniz eşleşmiyor")]
+        [DataType(DataType.Password)]
         public string RePasword { get; set; }
         [Required]
         [DataType(DataType.EmailAddress,ErrorMessage ="Düzgün bir email adresi giriniz")]
         public string email { get; set; }
+        public string Role { get; set; }
+
     }
 }

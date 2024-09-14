@@ -197,6 +197,7 @@
     margin-left: auto;
     margin-right: auto;
     width: fit-content;
+    padding:30px;
 }
 
 .giris2 {
@@ -224,4 +225,302 @@
 .input-box input:focus ~ label,
 .input-box input:valid ~ label {
     top: -5px;
+}
+/* Kart ve butonları*/
+
+.box {
+    position: relative;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+    z-index: 1;
+}
+
+    .box::before {
+        content: ' ';
+        position: absolute;
+        top: 0;
+        left: 50px;
+        width: 50%;
+        height: 100%;
+        text-decoration: none;
+        background: #fff;
+        border-radius: 8px;
+        transform: skewX(15deg);
+        transition: 0.5s;
+    }
+
+    .box::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50;
+        width: 50%;
+        height: 100%;
+        background: #fff;
+        border-radius: 8px;
+        transform: skewX(15deg);
+        transition: 0.5s;
+        filter: blur(30px);
+    }
+
+    .box:hover:before,
+    .box:hover:after {
+        transform: skewX(0deg) scaleX(1.3);
+    }
+
+    .box:before,
+    .box:after {
+        /* background: linear-gradient(315deg, #ffbc00, #ff0058) */
+        background: linear-gradient(315deg, #3572EF, #A7E6FF)
+    }
+
+
+    .box .contentt {
+        position: relative;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        z-index: 1;
+        transform: 0.5s;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .box .contentt h2 {
+            font-size: 20px;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+
+
+/* From Uiverse.io by gharsh11032000 */
+.Kart {
+    position: relative;
+    width: 190px;
+    height: 254px;
+    background-color: var(--secondaryColor);
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    padding: 12px;
+    gap: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+    .Kart::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        left: -5px;
+        margin: auto;
+        width: 200px;
+        height: 264px;
+        border-radius: 10px;
+        background: linear-gradient(-45deg, var(--darkprimary) 0%, var(--lightprimary) 100% );
+        z-index: -10;
+        pointer-events: none;
+        transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .Kart::after {
+        content: "";
+        z-index: -1;
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(-45deg, var(--secondaryColor) 0%, var(--primaryColor) 100% );
+        transform: translate3d(0, 0, 0) scale(0.95);
+        filter: blur(20px);
+    }
+
+    .Kart:hover::after {
+        filter: blur(30px);
+    }
+
+    .Kart:hover::before {
+        transform: rotate(-90deg) scaleX(1.34) scaleY(0.77);
+    }
+
+/* From Uiverse.io by cssbuttons-io */
+.KardButton {
+    padding: 1em 0.5em;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-decoration: none;
+    font-weight: 500;
+    color: var(--darkprimary);
+    background-color:var(--lightprimary);
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+}
+
+.KardButton:hover {
+    background-color: var(--darkprimary);
+    box-shadow: 0px 15px 20px var(--primaryColor);
+    color: #fff;
+    transform: translateY(-7px);
+}
+
+.KardButton:active {
+    transform: translateY(-1px);
+}
+
+
+/*Register2 form*/
+/* From Uiverse.io by ammarsaa */
+/* From Uiverse.io by ammarsaa */
+.register {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 350px;
+    padding: 20px;
+   
+    position: relative;
+    background-color:transparent;
+
+}
+
+.title {
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -1px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+    color: #00bfff;
+}
+
+.title::before {
+    width: 18px;
+    height: 18px;
+}
+
+.title::after {
+    width: 18px;
+    height: 18px;
+    animation: pulse 1s linear infinite;
+}
+
+.title::before,
+.title::after {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    left: 0px;
+    background-color: #00bfff;
+}
+
+.message {
+    font-size: 10px;
+    color: red;
+}
+
+.signin {
+    text-align: center;
+}
+
+.signin a:hover {
+    text-decoration: underline royalblue;
+}
+
+.signin a {
+    color: #00bfff;
+}
+
+.flex {
+    display: flex;
+    width: 100%;
+    gap: 6px;
+}
+
+.register label {
+    position: relative;
+}
+
+.register label .input {
+    background-color: var(--lightprimary);
+    color: var(--primaryColor);
+    width: 100%;
+    padding: 20px 05px 05px 10px;
+    outline: 0;
+    border: 1px solid rgba(105, 105, 105, 0.397);
+    border-radius: 10px;
+}
+.selectBox {
+    width: 100%;
+    background-color: var(--lightprimary);
+    color: var(--darkprimary);
+    padding: 10px;
+    border: 1px solid rgba(105, 105, 105, 0.397);
+    border-radius:10px;
+}
+
+.register label .input + span {
+    color: var(--darkprimary);
+    position: absolute;
+    left: 10px;
+    top: 0px;
+    font-size: 0.9em;
+    cursor: text;
+    transition: 0.3s ease;
+}
+
+    .register label .input:placeholder-shown + span {
+        top: 12.5px;
+        font-size: 0.9em;
+    }
+
+    .register label .input:focus + span,
+    .register label .input:valid + span {
+        color: var(--darkprimary);
+        top: 0px;
+        font-size: 0.7em;
+        font-weight: 600;
+    }
+
+.input {
+    font-size: medium;
+}
+
+.submit {
+    border: none;
+    outline: none;
+    padding: 10px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 16px;
+    transform: .3s ease;
+    background-color: #00bfff;
+}
+
+    .submit:hover {
+        background-color: #00bfff96;
+    }
+
+@keyframes pulse {
+    from {
+        transform: scale(0.9);
+        opacity: 1;
+    }
+
+    to {
+        transform: scale(1.8);
+        opacity: 0;
+    }
 }

@@ -1,9 +1,11 @@
 ﻿using Bussiness.Abstract;
 using Entity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AplicationWebUi.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class AcilServiAlanController : Controller
     {
         private IAcilServisAlanService _service;
@@ -23,6 +25,7 @@ namespace AplicationWebUi.Controllers
             _service.Create(entity);
             return RedirectToAction(nameof(List));
         }
+        [AllowAnonymous]
         public IActionResult List()
         {
             return View(_service.GetAll());
