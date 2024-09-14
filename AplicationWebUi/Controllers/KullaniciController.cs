@@ -1,4 +1,5 @@
-﻿using AplicationWebUi.Models;
+﻿using AplicationWebUi.Helpers;
+using AplicationWebUi.Models;
 using Bussiness.Abstract;
 using Entity;
 using Microsoft.AspNetCore.Authentication;
@@ -13,12 +14,15 @@ namespace AplicationWebUi.Controllers
     [Authorize(Roles = "admin")]
     public class KullaniciController : Controller
     {
-        private IUserService _userService; 
+        private readonly IUserService _userService; 
+        private readonly IHasher _hasher;
 
-        public KullaniciController(IUserService userService)
+        public KullaniciController(IUserService userService, IHasher hasher)
         {
             _userService = userService;
+            _hasher = hasher;
         }
+
         [AllowAnonymous]
         public IActionResult Login()
         {
@@ -33,7 +37,7 @@ namespace AplicationWebUi.Controllers
                 var user=_userService.GetByUsername(model.Username);
                 if (user != null)
                 {
-                    if (user.Password == model.Password)
+                    if (user.Password == _hasher.DoMd5HashedString(model.Password))
                     {
                         List<Claim> claims = new List<Claim>();
                         claims.Add(new Claim(ClaimTypes.NameIdentifier,user.UserId.ToString()));
@@ -77,7 +81,7 @@ namespace AplicationWebUi.Controllers
                     {
                         Fullname = model.Fullname,
                         Username = model.Username,
-                        Password = model.Password,
+                        Password = _hasher.DoMd5HashedString(model.Password),
                         Email = model.email,
                         Role = model.Role
                     };
@@ -128,8 +132,7 @@ namespace AplicationWebUi.Controllers
             var user=_userService.GetById(id);
             UpdateUserMode m = new UpdateUserMode { 
                 UserId=user.UserId,
-                Username=user.Username,
-               
+                Username=user.Username,               
                 email=user.Email,
                 Fullname=user.Fullname,
                 Role=user.Role,

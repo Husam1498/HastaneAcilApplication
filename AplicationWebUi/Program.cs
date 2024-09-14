@@ -1,4 +1,5 @@
 
+using AplicationWebUi.Helpers;
 using Bussiness.Abstract;
 using Bussiness.Concrete;
 using DataAccess.Abstract;
@@ -35,6 +36,8 @@ builder.Services.AddScoped<IAcilServisAlanService, AcilServisAlanManager>();
 builder.Services.AddScoped<IDoktorService, DoktorManager>();
 builder.Services.AddScoped<IHastaService, HastaManager>();
 builder.Services.AddScoped<IUserService, UserManager>();
+
+builder.Services.AddScoped<IHasher, Hasher>();
 
 
 var app = builder.Build();
