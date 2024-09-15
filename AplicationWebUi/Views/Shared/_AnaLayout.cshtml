@@ -31,15 +31,15 @@
                                 <li><a asp-controller="Doktor" asp-action="ListDoktor">Doktor</a></li>
                                 <li><a asp-controller="Hasta" asp-action="ListHasta">Hastalar</a></li>
                             }
-                            <li><a asp-controller="#" asp-action="#">@User.FindFirst("Username").Value</a></li>
-                            <li><a asp-controller="Kullanici" asp-action="Logout">Logout</a></li>
+                            <li><a asp-controller="Kullanici" asp-action="Profile"><img src="~/Uploads/@User.FindFirst("ProfilFoto").Value" class="rounded-circle" style="width:30px; height:30px;" /> @User.FindFirst("Username").Value </a></li>
+                            <li><a asp-controller="Kullanici" asp-action="Logout"><i class="fa-solid fa-arrow-right-from-bracket fa-sm"></i> Logout</a></li>
                            
 
                         }
                         else
                         {
                             <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                            <li><a asp-controller="Kullanici" asp-action="Login">Login</a></li>
+                            <li><a asp-controller="Kullanici" asp-action="Login"><i class="fa-solid fa-right-to-bracket fa-flip fa-sm" style="--fa-animation-duration: 2s;"></i> Login</a></li>
                            
                         }
 
@@ -67,6 +67,7 @@
    
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/ac72e5463b.js" crossorigin="anonymous"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     @await RenderSectionAsync("Scripts", required: false)

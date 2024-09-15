@@ -21,5 +21,8 @@ namespace Entity
         [StringLength(10)]
         public string Role { get; set; }
 
+        [StringLength(200)]
+        public string ProfileImageFileName { get; set; } = "no-pictures.png";
+
     }
 }

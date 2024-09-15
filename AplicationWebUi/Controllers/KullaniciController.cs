@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 
 namespace AplicationWebUi.Controllers
@@ -41,14 +43,15 @@ namespace AplicationWebUi.Controllers
                         List<Claim> claims = new List<Claim>();
                         claims.Add(new Claim(ClaimTypes.NameIdentifier,user.UserId.ToString()));
                         claims.Add(new Claim("Username",user.Username));
+                        claims.Add(new Claim("ProfilFoto",user.ProfileImageFileName));
                         claims.Add(new Claim(ClaimTypes.Name,user.Fullname));
                         claims.Add(new Claim(ClaimTypes.Role,user.Role));
-
+                        
                         ClaimsIdentity identity = new ClaimsIdentity(claims,CookieAuthenticationDefaults.AuthenticationScheme);
                         ClaimsPrincipal principal = new ClaimsPrincipal(identity);
                         HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,principal);
 
-
+                       
                         return RedirectToAction("Index","Home");
                     }
                     else
@@ -62,6 +65,10 @@ namespace AplicationWebUi.Controllers
 
 
             return View(model);
+        }
+        private void ProfilFotoGET(int id)
+        {
+
         }
        
         public IActionResult Register()
@@ -166,5 +173,51 @@ namespace AplicationWebUi.Controllers
         {
             return View();
         }
+        [AllowAnonymous]
+        public IActionResult Profile() {
+
+            ProfileinfoLoader();
+            return View();
+        }
+        private void ProfileinfoLoader()
+        {
+            int userid = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            User user = _userService.GetById(userid);
+            ViewData["Fullname"]=user.Fullname;
+            ViewData["Profileİmage"] = user.ProfileImageFileName;
+
+        }
+
+        public IActionResult ProfileChangeImage([Required] IFormFile file)
+        {
+            if (ModelState.IsValid) { 
+            
+                int userid= int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+                User user = _userService.GetById(userid);
+                string folderpath = Path.Combine($"wwwroot/Uploads", user.ProfileImageFileName);
+                if (System.IO.File.Exists(folderpath)) {
+                    System.IO.File.Delete(folderpath);
+                }
+                var ex=Path.GetFileName(file.FileName);
+                string fileName = $"p_{user.UserId}{ex}";
+              
+                Stream stream = new FileStream($"wwwroot/Uploads/{fileName}",FileMode.OpenOrCreate);
+                file.CopyTo(stream);
+                
+                stream.Close();
+                stream.Dispose();           
+                user.ProfileImageFileName = fileName;
+                _userService.Update(user);
+                return RedirectToAction(nameof(Profile));
+            
+            }
+
+
+            return View();
+        }
+
+
+
+
     }
 }

@@ -199,6 +199,11 @@
     width: fit-content;
     padding:30px;
 }
+/* bulunduğu alana tam yaysın*/
+#body3 {
+    
+    padding: 20px;
+}
 
 .giris2 {
     background: transparent;
