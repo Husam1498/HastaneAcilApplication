@@ -12,7 +12,7 @@ using System.Security.Claims;
 
 namespace AplicationWebUi.Controllers
 {
-    [Authorize(Roles = "admin")]
+    [Authorize]
     public class KullaniciController : Controller
     {
         private readonly IUserService _userService; 
@@ -70,12 +70,13 @@ namespace AplicationWebUi.Controllers
         {
 
         }
-       
+        [Authorize(Roles = "admin")]
         public IActionResult Register()
         {
             
             return View();
         }
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public IActionResult Register(RegisterModel model)
         {
@@ -173,7 +174,7 @@ namespace AplicationWebUi.Controllers
         {
             return View();
         }
-        [AllowAnonymous]
+   
         public IActionResult Profile() {
 
             ProfileinfoLoader();
@@ -184,6 +185,7 @@ namespace AplicationWebUi.Controllers
             int userid = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
             User user = _userService.GetById(userid);
             ViewData["Fullname"]=user.Fullname;
+            ViewData["Username"] = user.Username;
             ViewData["Profileİmage"] = user.ProfileImageFileName;
 
         }
@@ -216,6 +218,65 @@ namespace AplicationWebUi.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult ProfileChangeFullname([Required][StringLength(25, ErrorMessage = "En fazla 25 karakter olmalı")] [MinLength(4,ErrorMessage ="EN az 4 karakterli olmalı")] string Fullname)
+        {
+            if (ModelState.IsValid)
+            {
+
+                int userid = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+                User user = _userService.GetById(userid);
+                user.Fullname = Fullname;
+                _userService.Update(user);
+                return RedirectToAction(nameof(Profile));
+
+            }
+
+
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult ProfileChangeUsername([Required][StringLength(25, ErrorMessage = "En fazla 25 karakter olmalı")][MinLength(4, ErrorMessage = "EN az 4 karakterli olmalı")] string Username)
+        {
+            if (ModelState.IsValid)
+            {
+
+                int userid = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+                User user = _userService.GetById(userid);
+                user.Username = Username;
+                _userService.Update(user);
+                return RedirectToAction(nameof(Profile));
+
+            }
+
+
+            return View();
+        }
+        [HttpPost]
+        public IActionResult ProfileChangePassword(
+            [Required]
+            [MinLength(4, ErrorMessage = "En az 4 karakterden oluşmalı şifreniz")] string Password, string RePassword)
+        {
+            
+            if (ModelState.IsValid)
+            {
+                if(Password == RePassword)
+                {
+                    int userid = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+                    User user = _userService.GetById(userid);
+                    user.Password =_hasher.DoMd5HashedString(Password);
+                    _userService.Update(user);
+                    return RedirectToAction(nameof(Profile));
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Şifre değiştirlmedi lütfen şifreyi tekrar girin");
+                }            
+
+            }
+            return RedirectToAction(nameof(Profile));
+        }
 
 
 
