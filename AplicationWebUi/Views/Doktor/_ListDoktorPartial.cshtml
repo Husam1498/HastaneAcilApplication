@@ -1,0 +1,38 @@
+﻿
+ @model List<Doktor>
+<div class="container">
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Doktor Id</th>
+                <th scope="col">Doktor Name</th>
+                <th scope="col">Doktor Servisi</th>
+                <th scope="col">İşlemmler</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.DoktorId</td>
+                    <td>@item.DoktorFUllname</td>
+                    <td>
+                        @ViewBag.Alanlar[item.AlanId]
+                    </td>
+                    <td>
+                        <a asp-controller="Doktor" asp-action="UpdateDoktor" asp-route-id="@item.DoktorId" class="btn btn-dark btn-sm" style="background-color:#3572EF;">update</a>
+                        <a asp-controller="Doktor" asp-action="DeleteDoktor" asp-route-id="@item.DoktorId" class="btn btn-danger btn-sm">Sil</a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+
+
+

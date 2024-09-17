@@ -1,0 +1,43 @@
+﻿@{
+    Layout = "~/Views/Shared/_AnaLayout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <h1 class="text-center animate__animated animate__flipInX">Doktorlar</h1>
+        <hr />
+        <div class="col-4">
+            <div class="Kart">
+                <a class="KardButton" asp-controller="Doktor" asp-action="CreateDoktor" class="btn btn-primary"><i class="fa-solid fa-plus"></i> New Doktor</a>
+            </div>
+        </div>
+        <div class="col-8">
+            <h3 class="text-center">Şu An Hastanemizde bulunan Doktorlar</h3>
+            <hr />
+            <div id="body3">
+                <div class="giris2">
+                    <div class="form-box">
+                        <div class="flex">
+                            <a id="reload" class="KardButton" data-ajax-method="Get" data-ajax="true" data-ajax-url="/Doktor/MemberListDoktor" data-ajax-update="#panel"><i class="fa-solid fa-rotate"></i> Reload</a>
+
+                        </div>
+                        <div id="panel" class="row mt-3">
+                      
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="~/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+    <script>
+        $(function () {
+            reload.click();
+        });
+    </script>
+}

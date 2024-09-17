@@ -20,5 +20,9 @@ namespace AplicationWebUi.Controllers
         {
             return View(_userService.GetAll());
         }
+        public IActionResult UserListPartial()
+        {
+            return PartialView("_UserListPartial",_userService.GetAll());
+        }
     }
 }

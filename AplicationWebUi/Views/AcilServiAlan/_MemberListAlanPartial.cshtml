@@ -1,0 +1,34 @@
+﻿
+@model List<AcilServisAlan>
+
+    <div class="container">
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Alan Id</th>
+                    <th scope="col">Alan Name</th>
+                    <th scope="col">İşlemmler</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.AlanId</td>
+                        <td>@item.AlanName</td>
+                        <td>
+                            <a asp-controller="AcilServiAlan" asp-action="UpdateAlan" asp-route-id="@item.AlanId" class="btn btn-dark btn-sm" style="background-color:#3572EF;">update</a>
+                            <a asp-controller="AcilServiAlan" asp-action="DeleteAlan" asp-route-id="@item.AlanId" class="btn btn-danger btn-sm">Sil</a>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+
+
+

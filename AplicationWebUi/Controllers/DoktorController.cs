@@ -18,7 +18,21 @@ namespace AplicationWebUi.Controllers
             _service = service;
             _acilServisAlanService = acilServisAlanService;
         }
-
+        public IActionResult DoktorIndex()
+        {
+           
+            return View();
+        }
+        public IActionResult MemberListDoktor()
+        {
+            Hashtable _alanlar = new Hashtable();
+            foreach (var d in _acilServisAlanService.GetAll())
+            {
+                _alanlar.Add(d.AlanId, d.AlanName);
+            }
+            ViewBag.Alanlar = _alanlar;
+            return PartialView("_ListDoktorPartial", _service.GetAll());
+        }
         public IActionResult CreateDoktor()
         {
             ViewBag.Alanname = new SelectList(_acilServisAlanService.GetAll(),"AlanId","AlanName");
@@ -29,19 +43,10 @@ namespace AplicationWebUi.Controllers
         public IActionResult CreateDoktor(Doktor entity)
         {
             _service.Create(entity);
-            return RedirectToAction(nameof(ListDoktor));
+            return RedirectToAction(nameof(DoktorIndex));
         }
         [AllowAnonymous]
-        public IActionResult ListDoktor()
-        {
-            Hashtable _alanlar = new Hashtable();
-            foreach (var d in _acilServisAlanService.GetAll())
-            {
-                _alanlar.Add(d.AlanId, d.AlanName);
-            }
-            ViewBag.Alanlar= _alanlar;
-            return View(_service.GetAll());
-        }
+
         public IActionResult UpdateDoktor(int id)
         {
             ViewBag.alanlar = new SelectList(_acilServisAlanService.GetAll(), "AlanId", "AlanName");
@@ -52,12 +57,12 @@ namespace AplicationWebUi.Controllers
         public IActionResult UpdateDoktor(Doktor entity)
         {
            _service.Update(entity);
-            return RedirectToAction(nameof(ListDoktor));
+            return RedirectToAction(nameof(DoktorIndex));
         } 
         public IActionResult DeleteDoktor(int id)
         {
             _service.Delete(_service.GetById(id));
-            return RedirectToAction(nameof(ListDoktor));
+            return RedirectToAction(nameof(DoktorIndex));
         }
     }
 }

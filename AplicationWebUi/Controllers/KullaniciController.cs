@@ -52,7 +52,7 @@ namespace AplicationWebUi.Controllers
                         HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,principal);
 
                        
-                        return RedirectToAction("Index","Home");
+                        return RedirectToAction("KullaniciGiris", "Home");
                     }
                     else
                     {
@@ -93,7 +93,10 @@ namespace AplicationWebUi.Controllers
                         Role = model.Role
                     };
                     _userService.Create(user);
-
+                    ViewData["result"] = "Basarili";
+                    ViewData["message"] = "Kişi Başarılı bir şekilde Kayıt edildi";
+                    
+                    
                     return RedirectToAction("AnaSayfa", "Admin");
                 }
                 else
@@ -233,7 +236,7 @@ namespace AplicationWebUi.Controllers
             }
 
 
-            return View();
+            return RedirectToAction(nameof(Profile));
         }
 
         [HttpPost]

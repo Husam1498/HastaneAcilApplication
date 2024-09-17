@@ -1,4 +1,5 @@
 using AplicationWebUi.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -16,7 +17,13 @@ namespace AplicationWebUi.Controllers
         public IActionResult Index()
         {
             return View();
+        } 
+        public IActionResult KullaniciGiris()
+        {
+            return View();
         }
+       
+       
 
         public IActionResult Privacy()
         {

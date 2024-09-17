@@ -1,0 +1,41 @@
+﻿
+
+@model List<Hasta>
+
+<div class="container">
+
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th scope="col">Hasta Id</th>
+                <th scope="col">Hasta Name</th>
+                <th scope="col">Dateofbirth</th>
+                <th scope="col">Hastalık bilgisi</th>
+                <th scope="col">Doktor Name</th>
+                <th scope="col">Gideceği servis</th>
+                <th scope="col">İşlemmler</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.HastaId</td>
+                    <td>@item.HastaFullname</td>
+                    <td>@item.DateBirth</td>
+                    <td>@item.HastlıkBilgisi</td>
+                    <td>@ViewBag.doktorNameGonder[item.DoktorId]</td>
+                    <td>@ViewBag.doktorServisiNameGonder[item.DoktorId]</td>
+                    <td>
+                        <a asp-controller="Hasta" asp-action="UpdateHasta" asp-route-id="@item.HastaId" class="btn btn-dark btn-sm" style="background-color:#3572EF;">update</a>
+                        <a asp-controller="Hasta" asp-action="DeleteHasta" asp-route-id="@item.HastaId" class="btn btn-danger btn-sm">Sil</a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+                    

@@ -18,6 +18,30 @@ namespace AplicationWebUi.Controllers
             this.hastaService = hastaService;
             this.doktorService = doktorService;
         }
+        public IActionResult HastaIndex()
+        {
+            
+            return View();
+        }
+
+        public IActionResult MemberListHasta()
+        {
+            var doktorlarr = doktorService.GetAll();
+            Hashtable doktorName = new Hashtable();
+            Hashtable doktorServisi = new Hashtable();
+            foreach (var d in doktorlarr)
+            {
+
+                doktorServisi.Add(d.DoktorId, doktorService.GetDoktorServisName(d.AlanId));//bir dokotrun alan idsi üzerinden alan tablosuna gidip alanid yerine alan namesini koyar
+
+                doktorName.Add(d.DoktorId, d.DoktorFUllname);
+            }
+            ViewBag.doktorServisiNameGonder = doktorServisi;
+            ViewBag.doktorNameGonder = doktorName;
+
+            return PartialView("_ListHastaPartial",hastaService.GetAll());
+        }
+
 
         public IActionResult CreateHasta()
         {
@@ -28,7 +52,7 @@ namespace AplicationWebUi.Controllers
         public IActionResult CreateHasta(Hasta entity)
         {
             hastaService.Create(entity);
-            return RedirectToAction(nameof(ListHasta));
+            return RedirectToAction(nameof(HastaIndex));
         }
         public IActionResult UpdateHasta(int id)
         {
@@ -40,29 +64,13 @@ namespace AplicationWebUi.Controllers
         {
             hastaService.Update(entity);
 
-            return RedirectToAction(nameof(ListHasta));
+            return RedirectToAction(nameof(HastaIndex));
         }
         public IActionResult DeleteHasta(int id)
         {
             hastaService.Delete(hastaService.GetById(id));
-            return RedirectToAction(nameof(ListHasta));
+            return RedirectToAction(nameof(HastaIndex));
         }
-        public IActionResult ListHasta(Hasta entity)
-        {
-            var doktorlarr = doktorService.GetAll();
-            Hashtable doktorName = new Hashtable();
-            Hashtable doktorServisi = new Hashtable();
-            foreach (var d in doktorlarr)
-            {
-                
-                doktorServisi.Add(d.DoktorId, doktorService.GetDoktorServisName(d.AlanId));//bir dokotrun alan idsi üzerinden alan tablosuna gidip alanid yerine alan namesini koyar
-
-                doktorName.Add(d.DoktorId, d.DoktorFUllname);
-            }
-            ViewBag.doktorServisiNameGonder = doktorServisi;
-            ViewBag.doktorNameGonder = doktorName;
-
-            return View(hastaService.GetAll());
-        }
+       
     }
 }

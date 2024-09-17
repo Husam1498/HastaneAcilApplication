@@ -5,12 +5,6 @@
     Layout = "~/Views/Shared/_BaslagicLayout.cshtml";
 }
 
-<style>
-
-
-</style>
-
-
 @model RegisterModel
 
 <div id="body">
@@ -62,10 +56,17 @@
     </div>
 </div>
 
-@* /* From Uiverse.io by ammarsaa */ *@
 
 
+@section Scripts {
+    @if (ViewData["result"] != null)
+    {
+        <script>
+            toastr["success"](@ViewData["message"], "Başarılı");
+        </script>
+    }
 
+}
 
 
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
