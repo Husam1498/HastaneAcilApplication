@@ -1,8 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿
 @model UpdateUserMode
 
 
@@ -12,23 +8,28 @@
         <div class="form-box ">
             <form class="register" asp-controller="Kullanici" asp-action="KullaniciUpdate">
                 <p class="title">Update </p>
-                <div asp-validation-summary="All" class="message"></div>
                 <input type="hidden" asp-for="UserId" />
                 <div class="flex">
                     <label>
                         <input class="input" asp-for="Fullname">
                         <span>Fullname</span>
+                        <span asp-validation-for="Fullname" class="text-danger" style="font-size:10px"></span>
+
                     </label>
 
                     <label>
                         <input class="input" asp-for="Username">
                         <span>Username</span>
+                        <span asp-validation-for="Username" class="text-danger" style="font-size:10px"></span>
+
                     </label>
                 </div>
 
                 <label>
                     <input class="input" asp-for="email">
                     <span>Email</span>
+                    <span asp-validation-for="email" class="text-danger" style="font-size:10px"></span>
+
                 </label>
 
               
@@ -39,11 +40,18 @@
                         <option value="sekreter">Sekreter</option>
 
                     </select>
+                    <span asp-validation-for="Role" class="text-danger" style="font-size:10px"></span>
+
                 </label>
                 <button class="submit" asp-action="KullaniciUpdate"  asp-controller="Kullanici">Kaydet</button>
-                <button class="submit" asp-action="AnaSayfa" asp-controller="Admin">Geri dön</button>
+                <a class="submit" asp-action="AnaSayfa" asp-controller="Admin" style="text-align:center; text-decoration:none;">Geri dön</a>
 
             </form>
         </div>
     </div>
 </div>
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+}

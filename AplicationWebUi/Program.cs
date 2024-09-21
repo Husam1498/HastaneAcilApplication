@@ -61,6 +61,13 @@ app.UseAuthorization();
 app.UseAuthorization();
 
 app.MapControllerRoute(
+    name: "KullanýcýList",
+    pattern: "Alanlar",
+    defaults: new { controller = "Admin", action = "UserListPartial" });
+
+
+
+app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 

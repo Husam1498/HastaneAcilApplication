@@ -134,10 +134,7 @@ namespace AplicationWebUi.Controllers
 
 
 
-        public IActionResult KullaniciList() {
-            return View(_userService.GetAll());
-       
-        } 
+      
         public IActionResult KullaniciUpdate(int id) {
             var user=_userService.GetById(id);
             UpdateUserMode m = new UpdateUserMode { 
@@ -157,6 +154,7 @@ namespace AplicationWebUi.Controllers
         public IActionResult KullaniciUpdate(int id,UpdateUserMode model)
         {
             if (ModelState.IsValid) {
+                
                 var u=_userService.GetById(id);
                 if (u != null) {
                     u.Email = model.email;
@@ -234,7 +232,7 @@ namespace AplicationWebUi.Controllers
                 return RedirectToAction(nameof(Profile));
 
             }
-
+            ModelState.AddModelError("Fullname", "Girdiğiniz fullname kontorl edin");
 
             return RedirectToAction(nameof(Profile));
         }

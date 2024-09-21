@@ -1,6 +1,7 @@
 ﻿using Bussiness.Abstract;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Entity;
 
 namespace AplicationWebUi.Controllers
 {
@@ -16,13 +17,15 @@ namespace AplicationWebUi.Controllers
             _userService = userService;
         }
 
-        public IActionResult AnaSayfa()
+        public IActionResult AnaSayfa() 
         {
-            return View(_userService.GetAll());
+           
+            return View();
         }
         public IActionResult UserListPartial()
         {
-            return PartialView("_UserListPartial",_userService.GetAll());
+        
+            return PartialView("_UserListPartial", _userService.GetAll());
         }
     }
 }

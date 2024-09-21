@@ -1,4 +1,5 @@
-﻿using Bussiness.Abstract;
+﻿using AplicationWebUi.Models;
+using Bussiness.Abstract;
 using Entity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -7,7 +8,7 @@ using System.Collections;
 
 namespace AplicationWebUi.Controllers
 {
-    [Authorize(Roles = "admin,sektreter")]
+    [Authorize(Roles = "admin,sekreter")]
     public class HastaController : Controller
     {
         private IHastaService hastaService;
@@ -49,22 +50,54 @@ namespace AplicationWebUi.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult CreateHasta(Hasta entity)
+        public IActionResult CreateHasta(CreateHastaModel model)
         {
-            hastaService.Create(entity);
-            return RedirectToAction(nameof(HastaIndex));
+            if (ModelState.IsValid)
+            {
+                Hasta hasta = new()
+                {
+                    HastaFullname=model.Fullname,
+                    DateBirth=model.DateofBirth.ToShortDateString(),
+                    HastlıkBilgisi=model.HastallikBikgisi,
+                    DoktorId=model.DoktorId,
+
+                };
+                hastaService.Create(hasta);
+                return RedirectToAction(nameof(HastaIndex));
+            }
+           
+            return View(model);
         }
         public IActionResult UpdateHasta(int id)
         {
             ViewBag.doktorlar = new SelectList(doktorService.GetAll(), "DoktorId", "DoktorFUllname");
-            return View(hastaService.GetById(id));
+            var hasta = hastaService.GetById(id);
+            ViewBag.hastabirth=hasta.DateBirth;
+            CreateHastaModel a = new()
+            {
+                HastaId=hasta.HastaId,
+                HastallikBikgisi=hasta.HastlıkBilgisi,
+                Fullname=hasta.HastaFullname,
+                DoktorId=hasta.DoktorId,
+
+            };
+            return View(a);
         }
         [HttpPost]
-        public IActionResult UpdateHasta(Hasta entity)
+        public IActionResult UpdateHasta(CreateHastaModel model)
         {
-            hastaService.Update(entity);
+            if (ModelState.IsValid) { 
+                Hasta hasta=hastaService.GetById(model.HastaId);
+                hasta.HastaFullname = model.Fullname;
+                hasta.DateBirth=model.DateofBirth.ToShortDateString();
+                hasta.DoktorId=model.DoktorId;
+                hasta.HastlıkBilgisi=model.HastallikBikgisi;
+                hastaService.Update(hasta);
 
-            return RedirectToAction(nameof(HastaIndex));
+                return RedirectToAction(nameof(HastaIndex));
+            }
+            return View(model);
+
         }
         public IActionResult DeleteHasta(int id)
         {

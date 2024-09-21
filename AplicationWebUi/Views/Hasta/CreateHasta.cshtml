@@ -2,7 +2,7 @@
 @{
     Layout = "~/Views/Shared/_AnaLayout.cshtml";
 }
-@model Hasta
+@model CreateHastaModel
 
 <div id="body2">
     <div class="giris2">
@@ -14,15 +14,15 @@
 
 
                 <label>
-                    <input class="input" asp-for="HastaFullname">
+                    <input class="input" asp-for="Fullname">
                     <span>Fullname</span>
                 </label>
                 <label>
-                    <input class="input" asp-for="DateBirth">
+                    <input class="input" asp-for="DateofBirth">
                     <span>DateofBirth</span>
                 </label>
                 <label>
-                    <input class="input" asp-for="HastlıkBilgisi">
+                    <input class="input" asp-for="HastallikBikgisi">
                     <span>HastlıkBilgisi</span>
                 </label>
 
@@ -38,3 +38,8 @@
         </div>
     </div>
 </div>
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+}

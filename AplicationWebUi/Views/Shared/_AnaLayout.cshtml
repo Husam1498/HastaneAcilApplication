@@ -19,15 +19,15 @@
                     <ul class="main-nav__items">
                         @if (User.Identity.IsAuthenticated)
                         {
-                            @if (User.IsInRole("sektreter"))
+                            @if (User.IsInRole("sekreter"))
                             {
-                                <li><a asp-controller="Hasta" asp-action="ListHasta">Hastalar</a></li>
+                                <li><a asp-controller="Hasta" asp-action="HastaIndex">Hastalar</a></li>
                                
                             }                    
                           
                             @if (User.IsInRole("admin"))
                             {
-                                <li><a asp-controller="Admin" asp-action="AnaSayfa">Admin</a></li>
+                                <li><a asp-controller="Admin" asp-action="AnaSayfa">Kullanıcılar</a></li>
                                 <li><a asp-controller="AcilServiAlan" asp-action="AcilServisIndex">Alanlar</a></li>
                                 <li><a asp-controller="Doktor" asp-action="DoktorIndex">Doktor</a></li>
                                 <li><a asp-controller="Hasta" asp-action="HastaIndex">Hastalar</a></li>
