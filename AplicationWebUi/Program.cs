@@ -62,7 +62,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "KullanýcýList",
-    pattern: "Alanlar",
+    pattern: "Kullanýcýlar",
     defaults: new { controller = "Admin", action = "UserListPartial" });
 
 

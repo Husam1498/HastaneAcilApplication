@@ -1,4 +1,9 @@
 ﻿@using System.Security.Claims
 
 
-<p>Merhaba  @User.FindFirst(ClaimTypes.Name).Value</p>
+<div class="container">
+    <div class="text-center">
+        <h1>Merhaba</h1>
+        <h3>Hoşgeldiniz @User.FindFirst(ClaimTypes.Name).Value</h3>
+    </div>
+</div>
